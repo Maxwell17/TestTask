@@ -1,8 +1,0 @@
-ua\com\ciklum\domain\TextOffset.class
-ua\com\ciklum\core\util\MatcherUtil.class
-ua\com\ciklum\domain\FoundText.class
-ua\com\ciklum\core\util\AggregatorUtil.class
-ua\com\ciklum\core\util\SearchUtil.class
-ua\com\ciklum\core\util\FileUtil.class
-ua\com\ciklum\core\exception\AlgoException.class
-ua\com\ciklum\Main.class
