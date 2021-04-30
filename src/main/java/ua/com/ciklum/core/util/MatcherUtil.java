@@ -27,7 +27,7 @@ public class MatcherUtil {
                     int lineOffset = t.getOffset();
                     final Map<String, SortedSet<FoundText>> map = new HashMap<>();
                     for (final String content : t.getContent()) {
-                        for (String word : wordsToFind) {
+                        for (final String word : wordsToFind) {
                             try {
                                 int charOffset = SearchUtil.knuthMorrisPrattSearch(word.toCharArray(), content.toCharArray());
                                 if (charOffset != -1) {
