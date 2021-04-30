@@ -9,6 +9,7 @@ import ua.com.ciklum.domain.FoundText;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.stream.Collectors;
@@ -26,13 +27,12 @@ public class AggregatorUtil {
                     .map(CompletableFuture::join)
                     .collect(Collectors.toUnmodifiableList())
                     .forEach(m -> m.forEach((k, v) -> {
-                        if (!foundWordResult.containsKey(k)) {
-                            foundWordResult.put(k, v);
-                        } else {
-                            final SortedSet<FoundText> foundTexts = foundWordResult.get(k);
+                        final SortedSet<FoundText> foundTexts = foundWordResult.getOrDefault(k, new TreeSet<>());
+                        if (!foundTexts.isEmpty()) {
                             foundTexts.addAll(v);
-                            foundWordResult.put(k, foundTexts);
+                            v = foundTexts;
                         }
+                        foundWordResult.put(k, v);
                     }));
         } catch (Exception exc) {
             throw new AlgoException("Cannot aggregate results!", exc);
